@@ -29,10 +29,9 @@
 ### 🖼️ Gallery
 
 <p align="center">
-   <img src="./.github/assets/screen_1.png" style="margin-bottom: 10px;"/> <br>
-   <img src="./.github/assets/screen_2.png" style="margin-bottom: 10px;"/> <br>
-   <img src="./.github/assets/screen_3.png" style="margin-bottom: 10px;"/> <br>
-   Screenshots last updated <b>TBD</b>
+   <img src="./.github/assets/1.png" style="margin-bottom: 10px;"/> <br>
+   <img src="./.github/assets/2.png" style="margin-bottom: 10px;"/> <br>
+   Screenshots last updated <b>11.2024</b>
 </p>
 
 [TOC]
