@@ -34,15 +34,13 @@
    Screenshots last updated <b>11.2024</b>
 </p>
 
-[TOC]
-
 # 🗃️ Overview
 
-This are my script on setting up a HP Elitebook 845 G10 with Arch Linux using Hyprland as window manager my way.
+This are my scripts on setting up a HP Elitebook 845 G10 with Arch Linux using Hyprland as window manager.
 
 Iam using full disk encryption and secure boot (microsoft ca disabled in bios). For automatic Snapshot (by pacman) i use snapper.
 
-Main usage is Cloud Development, Virtualization and some gaming (Star Citizen)
+Main usage is Cloud Development, Virtualization and some gaming.
 
 Localisations are for german, so adjust for your own needs.
 
