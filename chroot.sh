@@ -87,7 +87,7 @@ install() {
     sleep 1
 
     echo -e "${YELLOW}Creating new local user${NORMAL}\n"
-    useradd -m -g users -G wheel,lp,power,audio -s /bin/zsh ${USERNAME}
+    useradd -m -G users,wheel,lp,power,audio -s /bin/zsh ${USERNAME}
     echo "%wheel ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
     echo -e "${YELLOW}Set password for your new user${NORMAL}\n"
     passwd ${USERNAME}
