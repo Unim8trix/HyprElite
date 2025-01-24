@@ -140,15 +140,15 @@ install() {
     sleep 3
 
     echo -e "${YELLOW}Copy dotfiles${NORMAL}\n"
-    cp -R /root/HyprElite/config/* /mnt/home/me/.config/
-    chown -R ${USERNAME}:${USERNAME} /mnt/home/me/.config/*
+    cp -R /root/HyprElite/config/* /mnt/home/${USERNAME}/.config/
+    chown -R ${USERNAME}:${USERNAME} /mnt/home/${USERNAME}/.config/*
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 0.5
 
     echo -e "${YELLOW}Copy wallpapers${NORMAL}\n"
-    mkdir -p /mnt/home/me/Bilder/Wallpapers
-    cp -R /root/HyprElite/wallpapers/* /mnt/home/me/Bilder/Wallpapers/
-    chown -R ${USERNAME}:${USERNAME} /mnt/home/me/Bilder/*
+    mkdir -p /mnt/home/${USERNAME}/Bilder/Wallpapers
+    cp -R /root/HyprElite/wallpapers/* /mnt/home/${USERNAME}/Bilder/Wallpapers/
+    chown -R ${USERNAME}:${USERNAME} /mnt/home/${USERNAME}/Bilder/*
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 0.5
 
