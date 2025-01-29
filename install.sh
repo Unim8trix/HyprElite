@@ -86,7 +86,6 @@ install() {
     btrfs sub create /mnt/@home
     btrfs sub create /mnt/@snapshots
     btrfs sub create /mnt/@cache
-    btrfs sub create /mnt/@kvm
     btrfs sub create /mnt/@log
     btrfs sub create /mnt/@tmp
     sleep 1
@@ -97,12 +96,11 @@ install() {
     echo -e "${YELLOW}Remount root volume with subvolume options${NORMAL}\n"
     mount -o noatime,compress=zstd,commit=120,ssd,discard=async,subvol=@ /dev/mapper/cryptsys /mnt
 
-    mkdir -p /mnt/{boot,home,.snapshots,var/cache,var/lib/libvirt,var/log,var/tmp}
+    mkdir -p /mnt/{boot,home,.snapshots,var/cache,var/log,var/tmp}
 
     mount -o noatime,compress=zstd,commit=120,ssd,discard=async,subvol=@home /dev/mapper/cryptsys /mnt/home
     mount -o noatime,compress=zstd,commit=120,ssd,discard=async,subvol=@snapshots /dev/mapper/cryptsys /mnt/.snapshots
     mount -o noatime,compress=zstd,commit=120,ssd,discard=async,subvol=@cache /dev/mapper/cryptsys /mnt/var/cache
-    mount -o noatime,compress=zstd,commit=120,ssd,discard=async,subvol=@kvm /dev/mapper/cryptsys /mnt/var/lib/libvirt
     mount -o noatime,compress=zstd,commit=120,ssd,discard=async,subvol=@log /dev/mapper/cryptsys /mnt/var/log
     mount -o noatime,compress=zstd,commit=120,ssd,discard=async,subvol=@tmp /dev/mapper/cryptsys /mnt/var/tmp
     mount /dev/nvme0n1p1 /mnt/boot
