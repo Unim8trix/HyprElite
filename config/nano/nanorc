@@ -1,0 +1,23 @@
+set atblanks
+set cutfromcursor
+set nohelp
+set softwrap
+set suspend
+set tabsize 4
+set tabstospaces
+set constantshow
+set linenumbers
+set casesensitive
+set historylog
+set positionlog
+set zap
+set autoindent
+set indicator
+set minibar
+
+set backup
+set backupdir "~/.cache/nano/backups/"
+
+include "/usr/share/nano/*.nanorc"
+include "/usr/share/nano/extra/*.nanorc"
+include "/usr/share/nano-syntax-highlighting/*.nanorc"

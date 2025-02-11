@@ -61,7 +61,7 @@ A big THANKs to [SOL](https://github.com/SolDoesTech/HyprV2) for getting me into
 | **alacritty**                          | My default terminal |
 | **waybar**                             | Top bar |
 | **vivaldi**                            | My default browser |
-| **neovim**                             | Terminal editor |
+| **nano**                               | Terminal editor |
 | **swww**                               | Wallpaper backend |
 | **wofi**                               | Application launcher menu |
 | **dunst**                              | Graphical notification daemon |
@@ -92,7 +92,6 @@ A big THANKs to [SOL](https://github.com/SolDoesTech/HyprV2) for getting me into
 | **papirus-icon-theme**                 | Icon theme |
 | **nordic-theme, nordzy-cursors**       | Nord based color theme |
 | **papirus-folders-nordic**             | Nord based color theme |
-| **neovim-nordic-git**                  | Nord based color theme |
 
 
 ## ⌨️ Keybinds

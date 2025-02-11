@@ -110,7 +110,7 @@ install() {
 
     echo -e "${YELLOW}Install minimal base system with pacstrap${NORMAL}\n"
     sleep 2
-    pacstrap /mnt base base-devel linux linux-firmware btrfs-progs amd-ucode networkmanager zsh git-lfs curl wget man-db mlocate reflector neovim
+    pacstrap /mnt base base-devel linux linux-firmware btrfs-progs amd-ucode networkmanager zsh git-lfs curl wget man-db mlocate reflector nano-syntax-highlighting
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 2
 
@@ -139,14 +139,19 @@ install() {
 
     echo -e "${YELLOW}Copy dotfiles${NORMAL}\n"
     cp -R /root/HyprElite/config/* /mnt/home/${USERNAME}/.config/
-    chown -R ${USERNAME}:${USERNAME} /mnt/home/${USERNAME}/.config/*
+    arch-chroot /mnt sudo chown -R ${USERNAME}:${USERNAME} /mnt/home/${USERNAME}/.config/*
+    echo -e "${GREEN}Done${NORMAL}\n"
+    sleep 0.5
+
+    echo -e "${YELLOW}Copy fonts${NORMAL}\n"
+    cp -R /root/HyprElite/fonts/* /mnt/home/${USERNAME}/.local/share/fonts/
+    arch-chroot /mnt sudo chown -R ${USERNAME}:${USERNAME} /mnt/home/${USERNAME}/.local/share/fonts/*
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 0.5
 
     echo -e "${YELLOW}Copy wallpapers${NORMAL}\n"
-    mkdir -p /mnt/home/${USERNAME}/Bilder/Wallpapers
     cp -R /root/HyprElite/wallpapers/* /mnt/home/${USERNAME}/Bilder/Wallpapers/
-    chown -R ${USERNAME}:${USERNAME} /mnt/home/${USERNAME}/Bilder/*
+    arch-chroot /mnt sudo chown -R ${USERNAME}:${USERNAME} /mnt/home/${USERNAME}/Bilder/*
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 0.5
 

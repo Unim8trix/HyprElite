@@ -175,7 +175,13 @@ install() {
     sudo systemctl enable getty@tty1
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 1
+
+    echo -e "${YELLOW}Create user directories${NORMAL}\n"
+    su ${USERNAME} -c mkdir -p /home/${USERNAME}/{.cache/nano/backups,.local/share/fonts,Bilder/Wallpapers,Bilder/Screenshots}
+    echo -e "${GREEN}Done${NORMAL}\n"
+    sleep 1
 }
+
 
 main() {
     init
