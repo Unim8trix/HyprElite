@@ -68,7 +68,8 @@
             "class<mousepad>": " ",
             "class<libreoffice-writer>": " ",
             "class<libreoffice-startcenter>": "󰏆 ",
-            "class<Code>": "󰨞 "
+            "class<Code>": "󰨞 ",
+            "class<Godot>": " "
         }
     },
 
