@@ -60,7 +60,7 @@ A big THANKs to [SOL](https://github.com/SolDoesTech/HyprV2) for getting me into
 | **hyprland**                           | The compositor |
 | **alacritty**                          | My default terminal |
 | **waybar**                             | Top bar |
-| **vivaldi**                            | My default browser |
+| **Firefox Developer Edition**          | My default browser |
 | **nano**                               | Terminal editor |
 | **swww**                               | Wallpaper backend |
 | **wofi**                               | Application launcher menu |

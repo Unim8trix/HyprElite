@@ -153,7 +153,7 @@ install() {
 
     echo -e "${YELLOW}Install Window manager and tools${NORMAL}\n"
     sleep 2
-    su ${USERNAME} -c "yay --noconfirm -Sy vulkan-radeon mesa hyprland alacritty waybar vivaldi vivaldi-ffmpeg-codecs \
+    su ${USERNAME} -c "yay --noconfirm -Sy vulkan-radeon mesa hyprland alacritty waybar firefox-developer-edition-i18n-de \
       swww wofi dunst xdg-desktop-portal-hyprland \
       tumbler nordic-theme nordzy-cursors papirus-icon-theme papirus-folders-nordic \
       brightnessctl mc thunar polkit-gnome pamixer pavucontrol \
