@@ -109,7 +109,7 @@ install() {
 
     echo -e "${YELLOW}Install minimal base system with pacstrap${NORMAL}\n"
     sleep 2
-    pacstrap /mnt base base-devel linux linux-firmware btrfs-progs amd-ucode networkmanager zsh git-lfs curl wget man-db mlocate reflector nano-syntax-highlighting
+    pacstrap /mnt base base-devel linux-zen linux-firmware btrfs-progs amd-ucode networkmanager zsh git-lfs curl wget man-db mlocate reflector nano-syntax-highlighting
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 2
 

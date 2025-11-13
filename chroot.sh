@@ -124,8 +124,8 @@ install() {
     echo "timeout 2" >> /boot/loader/loader.conf
     echo "editor 0" >> /boot/loader/loader.conf
     echo "title Arch Linux" > /boot/loader/entries/arch.conf
-    echo "linux /vmlinuz-linux" >> /boot/loader/entries/arch.conf
-    echo "initrd /initramfs-linux.img" >> /boot/loader/entries/arch.conf
+    echo "linux /vmlinuz-linux-zen" >> /boot/loader/entries/arch.conf
+    echo "initrd /initramfs-linux-zen.img" >> /boot/loader/entries/arch.conf
     echo "options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p3)=cryptsys rd.luks.options=password-echo=no root=/dev/mapper/cryptsys rootflags=subvol=@ rw" >> /boot/loader/entries/arch.conf
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 1
