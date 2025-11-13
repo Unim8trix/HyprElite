@@ -61,7 +61,7 @@ install() {
 
     echo -e "${YELLOW}Create new disk layout${NORMAL}\n"
     sgdisk -n 0:0:+1024MiB -t 0:ef00 -c 0:esp /dev/nvme0n1
-    sgdisk -n 0:0:+4096MiB -t 0:8200 -c 0:swap /dev/nvme0n1
+    sgdisk -n 0:0:+65536MiB -t 0:8200 -c 0:swap /dev/nvme0n1
     sgdisk -n 0:0:0 -t 0:8309 -c 0:luks /dev/nvme0n1
     partprobe /dev/nvme0n1
     echo -e "${GREEN}Done${NORMAL}\n"
