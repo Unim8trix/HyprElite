@@ -84,26 +84,25 @@ install() {
     mount /dev/mapper/cryptsys /mnt
     btrfs sub create /mnt/@
     btrfs sub create /mnt/@home
-    btrfs sub create /mnt/@snapshots
     btrfs sub create /mnt/@cache
     btrfs sub create /mnt/@log
     btrfs sub create /mnt/@tmp
+    btrfs sub create /mnt/@pkg
     sleep 1
     umount /mnt
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 0.5
 
     echo -e "${YELLOW}Remount root volume with subvolume options${NORMAL}\n"
-    mount -o noatime,compress=zstd,commit=120,ssd,discard=async,subvol=@ /dev/mapper/cryptsys /mnt
+    mount -o noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@ /dev/mapper/cryptsys /mnt
+    mount --mkdir -o noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@home /dev/mapper/cryptsys /mnt/home
+    mount --mkdir -o noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@log /dev/mapper/cryptsys /mnt/var/log
+    mount --mkdir -o noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@tmp /dev/mapper/cryptsys /mnt/var/tmp
+    mount --mkdir -o noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@cache /dev/mapper/cryptsys /mnt/var/cache
+    mkdir -p /mnt/var/cache/pacman/pkg
+    mount -o noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@pkg /dev/mapper/cryptsys /mnt/var/cache/pacman/pkg
+    mount --mkdir /dev/nvme0n1p1 /mnt/boot
 
-    mkdir -p /mnt/{boot,home,.snapshots,var/cache,var/log,var/tmp}
-
-    mount -o noatime,compress=zstd,commit=120,ssd,discard=async,subvol=@home /dev/mapper/cryptsys /mnt/home
-    mount -o noatime,compress=zstd,commit=120,ssd,discard=async,subvol=@snapshots /dev/mapper/cryptsys /mnt/.snapshots
-    mount -o noatime,compress=zstd,commit=120,ssd,discard=async,subvol=@cache /dev/mapper/cryptsys /mnt/var/cache
-    mount -o noatime,compress=zstd,commit=120,ssd,discard=async,subvol=@log /dev/mapper/cryptsys /mnt/var/log
-    mount -o noatime,compress=zstd,commit=120,ssd,discard=async,subvol=@tmp /dev/mapper/cryptsys /mnt/var/tmp
-    mount /dev/nvme0n1p1 /mnt/boot
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 5
     clear
