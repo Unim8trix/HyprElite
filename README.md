@@ -267,6 +267,85 @@ Edit `/boot/loader/entries/*.conf` and append this to the `options` line:
 quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0
 ```
 
+## WIP Automatic Snapshots on package installs/updates
+
+The goal is to have automatic snapshots each time i made changes with pacman. The hook creates a snapshot
+to `.snapshots\STABLE`. So if something goes wrong i can boot from this snapshot and rollback my system.
+
+Create the STABLE snapshot and modify Bootloader
+
+```bash
+sudo -i
+btrfs sub snap / /.snapshots/STABLE
+cp /boot/vmlinuz-linux-zen /boot/vmlinuz-linux-zen-stable
+cp /boot/amd-ucode.img /boot/amd-ucode-stable.img
+cp /boot/initramfs-linux-zen.img /boot/initramfs-linux-zen-stable.img
+cp /boot/loader/entries/arch.conf /boot/loader/entries/stable.conf
+```
+
+Edit `/boot/loader/entries/stable.conf` to boot from STABLE snapshot
+
+```bash
+title   Arch Linux Stable
+linux   /vmlinuz-linux-zen-stable
+initrd  /amd-ucode-stable.img
+initrd  /initramfs-linux-zen-stable.img
+options ... rootflags=subvol=@snapshots/STABLE rw
+```
+
+Also edit the `/.snapshots/STABLE/etc/fstab` to change the root to the new snapshot/STABLE
+
+ˋˋˋ
+LABEL=ARCH  /  btrfs  rw,noatime,.....subvol=@snapshots/STABLE
+ˋˋˋ
+reboot and test if you can boot from the stable snapshot.
+
+
+Hook for Automatic snapshots:
+
+```bash
+# /etc/pacman.d/hooks/00-autosnap.hook
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Creating btrfs snapshot
+When = PreTransaction
+Exec = /usr/bin/autosnap
+AbortOnFail
+```
+
+Bash script for autosnap
+
+```bash
+#!/bin/bash
+
+# Create btrfs snapshot in .snapshots/STABLE and move kernel,ramfs to bootloader
+# triggered by 00-autosnap.hook for pacman
+
+BTRFS=/usr/bin/btrfs
+SED=/usr/bin/sed
+CP=/usr/bin/cp
+
+# Delete old snapshot before we make a new
+$BTRFS sub delete /.snapshots/STABLE
+$BTRFS sub snap / /.snapshots/STABLE
+
+# Adjust fstab for snapshot
+$SED -i 's|subvol=@\t|subvol=@snapshots/STABLE |' /.snapshots/STABLE/etc/fstab
+$SED -i 's|subvol=@ |subvol=@snapshots/STABLE |' /.snapshots/STABLE/etc/fstab
+
+# Copy current kernel/ramfs for STABLE
+$CP /boot/vmlinuz-linux-zen /boot/vmlinuz-linux-zen-stable
+$CP /boot/amd-ucode.img /boot/amd-ucode-stable.img
+$CP /boot/initramfs-linux-zen.img /boot/initramfs-linux-zen-stable.img
+
+```
+
 ## Gaming
 
 Enable 32-Bit Lib
