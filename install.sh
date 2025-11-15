@@ -83,6 +83,7 @@ install() {
     mkfs.btrfs -L ARCH -f /dev/mapper/cryptsys
     mount /dev/mapper/cryptsys /mnt
     btrfs sub create /mnt/@
+    btrfs sub create /mnt/@snapshots
     btrfs sub create /mnt/@home
     btrfs sub create /mnt/@cache
     btrfs sub create /mnt/@log
@@ -95,6 +96,7 @@ install() {
 
     echo -e "${YELLOW}Remount root volume with subvolume options${NORMAL}\n"
     mount -o noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@ /dev/mapper/cryptsys /mnt
+    mount --mkdir -o noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@snapshots /dev/mapper/cryptsys /mnt/.snapshots
     mount --mkdir -o noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@home /dev/mapper/cryptsys /mnt/home
     mount --mkdir -o noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@log /dev/mapper/cryptsys /mnt/var/log
     mount --mkdir -o noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@tmp /dev/mapper/cryptsys /mnt/var/tmp
