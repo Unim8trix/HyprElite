@@ -162,7 +162,7 @@ install() {
       noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-dejavu cantarell-fonts \
       nwg-look xfce4-settings sof-firmware alsa-firmware fzf jq yq \
       pipewire-alsa pipewire-pulse pipewire-jack xdg-user-dirs starship fastfetch \
-      grim slurp jq otf-font-awesome wl-clipboard swappy"
+      grim slurp jq otf-font-awesome wl-clipboard xsensors swappy"
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 5
 
