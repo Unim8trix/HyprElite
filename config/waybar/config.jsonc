@@ -1,145 +1,157 @@
 {
-    "layer": "top",
-    "position": "top",
-    "mod": "dock",
-    "exclusive": true,
-    "passthrough": false,
-    "gtk-layer-shell": true,
-    "height": 50,
-    "modules-left": ["custom/launch_wofi","hyprland/workspaces","hyprland/window"],
-    "modules-center": ["custom/lock_screen","custom/updates","clock"],
-    "modules-right": ["tray","temperature","battery","backlight","pulseaudio","pulseaudio#microphone"],
+  "layer": "top",
+  "position": "top",
+  "mod": "dock",
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  "height": 50,
+  "modules-left": [
+    "custom/launch_wofi",
+    "hyprland/workspaces",
+    "hyprland/window",
+  ],
+  "modules-center": ["custom/lock_screen", "custom/updates", "clock"],
+  "modules-right": [
+    "tray",
+    "temperature",
+    "battery",
+    "backlight",
+    "pulseaudio",
+    "pulseaudio#microphone",
+  ],
 
-    "hyprland/window": {
-        "format": "{}"
+  "hyprland/window": {
+    "format": "{}",
+  },
+
+  "custom/launch_wofi": {
+    "format": "",
+    "tooltip": false,
+  },
+
+  "custom/lock_screen": {
+    "format": "",
+    "on-click": "sh -c '(sleep 0.5s; swaylock)' & disown",
+    "tooltip": false,
+  },
+
+  "custom/updates": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/update-sys",
+    "on-click": "~/.config/waybar/scripts/update-sys update",
+    "interval": 300,
+    "tooltip": true,
+  },
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "sort-by-number": true,
+    "show-special": false,
+    "on-click": "activate",
+    "format": "{icon} {windows}",
+    "format-window-separator": " ",
+    "window-rewrite-default": " ",
+    "window-rewrite": {
+      "title<.*youtube.*>": " ",
+      "title<.*amazon.*>": " ",
+      "title<.*reddit.*>": " ",
+      "title<.*Picture-in-Picture.*>": " ",
+      "class<Vivaldi-stable>": " ",
+      "class<firefox-developer-edition>": " ",
+      "class<Alacritty>": " ",
+      "class<com.mitchellh.ghostty>": "󰊠 ",
+      "class<dev.zed.Zed>": " ",
+      "class<obsidian>": "󰇈 ",
+      "class<GitKraken>": " ",
+      "class<Bitwarden>": " ",
+      "class<steam>": " ",
+      "class<Vmware>": "  ",
+      "class<thunar>": "󰝰 ",
+      "class<discord>": " ",
+      "class<WebCord>": " ",
+      "class<sublime_text>": "󰅳 ",
+      "class<celluloid>": " ",
+      "class<vlc>": "󰕼 ",
+      "class<Cider>": "󰎆 ",
+      "class<codeblocks>": "󰅩 ",
+      "class<virt-manager>": " ",
+      "class<mousepad>": " ",
+      "class<libreoffice-writer>": " ",
+      "class<libreoffice-startcenter>": "󰏆 ",
+      "class<Code>": "󰨞 ",
+      "class<Godot>": " ",
     },
+  },
 
-    "custom/launch_wofi": {
-        "format": "",
-        "tooltip": false
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10,
+  },
+
+  "clock": {
+    "format": "{:%H:%M}",
+    "tooltip": true,
+    "tooltip-format": "{: %A, %e.%B %Y}",
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": ["", "", ""],
+  },
+
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 20,
     },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", "", "", "", "", "", "", ""],
+  },
 
-    "custom/lock_screen": {
-        "format": "",
-        "on-click": "sh -c '(sleep 0.5s; swaylock)' & disown",
-        "tooltip": false
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "",
+    "on-click": "pamixer -t",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5",
+    "scroll-step": 5,
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""],
     },
+  },
 
-    "custom/updates": {
-        "format": "{}",
-        "exec": "~/.config/waybar/scripts/update-sys",
-        "on-click": "~/.config/waybar/scripts/update-sys update",
-        "interval": 300,
-        "tooltip": true
-    },
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": "",
+    "on-click": "pamixer --default-source -t",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "pamixer --default-source -i 5",
+    "on-scroll-down": "pamixer --default-source -d 5",
+    "scroll-step": 5,
+  },
 
-    "hyprland/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "warp-on-scroll": false,
-        "sort-by-number": true,
-        "show-special": false,
-        "on-click": "activate",
-        "format": "{icon} {windows}",
-        "format-window-separator": " ",
-        "window-rewrite-default": " ",
-        "window-rewrite": {
-            "title<.*youtube.*>": " ",
-            "title<.*amazon.*>": " ",
-            "title<.*reddit.*>": " ",
-            "title<.*Picture-in-Picture.*>": " ",
-            "class<Vivaldi-stable>": " ",
-            "class<firefox-developer-edition>": " ",
-            "class<Alacritty>": " ",
-            "class<obsidian>": "󰇈 ",
-            "class<GitKraken>": " ",
-            "class<Bitwarden>": " ",
-            "class<steam>": " ",
-            "class<Vmware>": "  ",
-            "class<thunar>": "󰝰 ",
-            "class<discord>": " ",
-            "class<WebCord>": " ",
-            "class<sublime_text>": "󰅳 ",
-            "class<celluloid>": " ",
-            "class<vlc>": "󰕼 ",
-            "class<Cider>": "󰎆 ",
-            "class<codeblocks>": "󰅩 ",
-            "class<virt-manager>": " ",
-            "class<mousepad>": " ",
-            "class<libreoffice-writer>": " ",
-            "class<libreoffice-startcenter>": "󰏆 ",
-            "class<Code>": "󰨞 ",
-            "class<Godot>": " "
-        }
-    },
-
-
-    "tray": {
-        "icon-size": 18,
-        "spacing": 10
-    },
-
-    "clock": {
-        "format": "{:%H:%M}",
-        "tooltip": true,
-        "tooltip-format": "{: %A, %e.%B %Y}"
-    },
-
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", ""]
-    },
-
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 20
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", "", "", ""]
-    },
-
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "",
-        "on-click": "pamixer -t",
-        "on-click-right": "pavucontrol",
-        "on-scroll-up": "pamixer -i 5",
-        "on-scroll-down": "pamixer -d 5",
-        "scroll-step": 5,
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        }
-    },
-
-    "pulseaudio#microphone": {
-        "format": "{format_source}",
-        "format-source": " {volume}%",
-        "format-source-muted": "",
-        "on-click": "pamixer --default-source -t",
-        "on-click-right": "pavucontrol",
-        "on-scroll-up": "pamixer --default-source -i 5",
-        "on-scroll-down": "pamixer --default-source -d 5",
-        "scroll-step": 5
-    },
-
-    "temperature": {
-        "thermal-zone": 1,
-        "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
-        "format": " {temperatureC}°C",
-        "critical-threshold": 70,
-        "format-critical": " {temperatureC}°C",
-        "on-click": "xsensors"
-    }
+  "temperature": {
+    "thermal-zone": 1,
+    "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+    "format": " {temperatureC}°C",
+    "critical-threshold": 70,
+    "format-critical": " {temperatureC}°C",
+    "on-click": "xsensors",
+  },
 }
