@@ -157,7 +157,7 @@ install() {
       swww wofi dunst xdg-desktop-portal-hyprland \
       tumbler nordic-theme nordzy-cursors papirus-icon-theme papirus-folders-nordic \
       brightnessctl mc thunar polkit-gnome pamixer pavucontrol \
-      bluez-utils blueberry network-manager-applet gvfs modemmanager usb_modeswitch \
+      bluez-utils blueman network-manager-applet gvfs modemmanager usb_modeswitch \
       thunar-archive-plugin file-roller btop pacman-contrib power-profiles-daemon \
       noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-dejavu cantarell-fonts \
       nwg-look xfce4-settings sof-firmware alsa-firmware fzf jq yq \
