@@ -117,7 +117,7 @@ install() {
     echo "title Arch Linux" > /boot/loader/entries/arch.conf
     echo "linux /vmlinuz-linux-zen" >> /boot/loader/entries/arch.conf
     echo "initrd /initramfs-linux-zen.img" >> /boot/loader/entries/arch.conf
-    echo "options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p3)=cryptsys rd.luks.options=password-echo=no root=/dev/mapper/cryptsys rootflags=subvol=@ ipv6.disable=1 rw" >> /boot/loader/entries/arch.conf
+    echo "options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p3)=cryptsys rd.luks.options=password-echo=no root=/dev/mapper/cryptsys ipv6.disable=1 rw" >> /boot/loader/entries/arch.conf
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 1
 
