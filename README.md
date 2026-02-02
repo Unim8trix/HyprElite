@@ -58,7 +58,7 @@ A big THANKs to [SOL](https://github.com/SolDoesTech/HyprV2) for getting me into
 | :--------------------------------------| :---------------------------------------------------------------------------------------------|
 | **mesa, vulkan-radeon**                | OpenGL and Vulkan drivers for amd gpu |
 | **hyprland**                           | The compositor |
-| **ghostty**                            | My default terminal |
+| **alacritty**                            | My default terminal |
 | **waybar**                             | Top bar |
 | **firefox-developer-edition-i18n-de**  | My default browser |
 | **nano**                               | Terminal editor |
