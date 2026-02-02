@@ -104,11 +104,11 @@ install() {
     sleep 1
 
     echo -e "${YELLOW}Update pacman mirrorlist${NORMAL}\n"
-    reflector --country Germany --latest 10 --sort score --protocol https --save /etc/pacman.d/mirrorlist
+    reflector --country Germany --latest 5 --sort rate --protocol https --save /etc/pacman.d/mirrorlist
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 1
 
-    echo -e "${YELLOW}Configure initial ramdisk${NORMAL}\n"
+    echo -e "${YELLOW}Add AMDGPU to ramdisk config${NORMAL}\n"
     sed -i 's/MODULES=()/MODULES=(amdgpu)/' /etc/mkinitcpio.conf
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 1
@@ -124,7 +124,7 @@ install() {
     echo "title Arch Linux" > /boot/loader/entries/arch.conf
     echo "linux /vmlinuz-linux-zen" >> /boot/loader/entries/arch.conf
     echo "initrd /initramfs-linux-zen.img" >> /boot/loader/entries/arch.conf
-    echo "options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p3)=cryptsys rd.luks.options=password-echo=no root=/dev/mapper/cryptsys rootflags=subvol=@ rw" >> /boot/loader/entries/arch.conf
+    echo "options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p3)=cryptsys rd.luks.options=password-echo=no root=/dev/mapper/cryptsys rw" >> /boot/loader/entries/arch.conf
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 1
 
