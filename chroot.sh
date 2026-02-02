@@ -64,7 +64,7 @@ install() {
     ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
     echo -e "${YELLOW}Set localhost informations in hosts${NORMAL}\n"
-    echo "127.0.0.1 localhost" > /etc/hosts
+    echo "127.0.0.1 localhost" >> /etc/hosts
     echo "::1 localhost" >> /etc/hosts
     echo "127.0.1.1 ${HOSTNAME}.localdomain ${HOSTNAME}" >> /etc/hosts
 
@@ -91,19 +91,25 @@ install() {
     echo "%wheel ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
     echo -e "${YELLOW}Set password for your new user${NORMAL}\n"
     passwd ${USERNAME}
-    echo "export EDITOR='nano'" > /home/${USERNAME}/.zshrc
+    echo "export EDITOR='nvim'" > /home/${USERNAME}/.zshrc
     echo "autoload -Uz compinit promptinit" >> /home/${USERNAME}/.zshrc
     echo "compinit" >> /home/${USERNAME}/.zshrc
     echo "promptinit" >> /home/${USERNAME}/.zshrc
     echo "prompt suse" >> /home/${USERNAME}/.zshrc
     echo "alias ll='ls -lah'" >> /home/${USERNAME}/.zshrc
     echo "alias cls='clear'" >> /home/${USERNAME}/.zshrc
+    echo "alias vim='nvim'" >> /home/${USERNAME}/.zshrc
     chown ${USERNAME}:users /home/${USERNAME}/.zshrc
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 1
 
     echo -e "${YELLOW}Update pacman mirrorlist${NORMAL}\n"
-    reflector --country Germany --latest 5 --sort rate --protocol https --save /etc/pacman.d/mirrorlist
+    reflector --country Germany --latest 10 --sort score --protocol https --save /etc/pacman.d/mirrorlist
+    echo -e "${GREEN}Done${NORMAL}\n"
+    sleep 1
+
+    echo -e "${YELLOW}Configure initial ramdisk${NORMAL}\n"
+    sed -i 's/MODULES=()/MODULES=(amdgpu)/' /etc/mkinitcpio.conf
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 1
 
@@ -118,7 +124,7 @@ install() {
     echo "title Arch Linux" > /boot/loader/entries/arch.conf
     echo "linux /vmlinuz-linux-zen" >> /boot/loader/entries/arch.conf
     echo "initrd /initramfs-linux-zen.img" >> /boot/loader/entries/arch.conf
-    echo "options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p3)=cryptsys rd.luks.options=password-echo=no root=/dev/mapper/cryptsys rw" >> /boot/loader/entries/arch.conf
+    echo "options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p3)=cryptsys rd.luks.options=password-echo=no root=/dev/mapper/cryptsys rootflags=subvol=@ rw" >> /boot/loader/entries/arch.conf
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 1
 
@@ -145,8 +151,8 @@ install() {
 
     echo -e "${YELLOW}Install Window manager and tools${NORMAL}\n"
     sleep 2
-    su ${USERNAME} -c "yay --noconfirm -Sy vulkan-radeon mesa hyprland ghostty waybar firefox-developer-edition-i18n-de \
-      swww wofi dunst xdg-desktop-portal-hyprland plymouth plymouth-theme-arch-charge \
+    su ${USERNAME} -c "yay --noconfirm -Sy vulkan-radeon mesa hyprland alacritty waybar firefox-developer-edition-i18n-de \
+      swww wofi dunst xdg-desktop-portal-hyprland hyprlock plymouth-theme-arch-charge \
       tumbler nordic-theme nordzy-cursors papirus-icon-theme papirus-folders-nordic \
       brightnessctl mc thunar polkit-gnome pamixer pavucontrol \
       bluez-utils blueman network-manager-applet gvfs modemmanager usb_modeswitch \
@@ -174,7 +180,6 @@ install() {
     sleep 1
 
     echo -e "${YELLOW}Configure ramdisk for plymouth${NORMAL}\n"
-    sed -i 's/MODULES=()/MODULES=(amdgpu)/' /etc/mkinitcpio.conf
     sed -i 's/HOOKS=.*/HOOKS=(systemd plymouth keyboard autodetect microcode modconf kms block sd-vconsole sd-encrypt filesystems fsck)/' /etc/mkinitcpio.conf
     mkinitcpio -P
     echo -e "${GREEN}Done${NORMAL}\n"
