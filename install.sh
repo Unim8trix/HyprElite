@@ -79,21 +79,37 @@ install() {
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 0.5
 
-    echo -e "${YELLOW}Create XFS filesystem${NORMAL}\n"
-    mkfs.xfs -L ARCH -f /dev/mapper/cryptsys
+    echo -e "${YELLOW}Create BTRFS filesystem and subvolumes${NORMAL}\n"
+    mkfs.btrfs -L ARCH -f /dev/mapper/cryptsys
+    mount /dev/mapper/cryptsys /mnt
+    btrfs sub create /mnt/@
+    btrfs sub create /mnt/@home
+    btrfs sub create /mnt/@cache
+    btrfs sub create /mnt/@log
+    btrfs sub create /mnt/@tmp
+    btrfs sub create /mnt/@pkg
+    sleep 1
+    umount /mnt
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 0.5
 
-    echo -e "${YELLOW}Mount volumes${NORMAL}\n"
-    mount /dev/mapper/cryptsys /mnt
+    echo -e "${YELLOW}Remount root volume with btrfs subvolume options${NORMAL}\n"
+    mount -o noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@ /dev/mapper/cryptsys /mnt
+    mount --mkdir -o noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@home /dev/mapper/cryptsys /mnt/home
+    mount --mkdir -o noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@log /dev/mapper/cryptsys /mnt/var/log
+    mount --mkdir -o noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@tmp /dev/mapper/cryptsys /mnt/var/tmp
+    mount --mkdir -o noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@cache /dev/mapper/cryptsys /mnt/var/cache
+    mkdir -p /mnt/var/cache/pacman/pkg
+    mount -o noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@pkg /dev/mapper/cryptsys /mnt/var/cache/pacman/pkg
     mount --mkdir /dev/nvme0n1p1 /mnt/boot
+
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 5
     clear
 
     echo -e "${YELLOW}Install minimal base system with pacstrap${NORMAL}\n"
     sleep 2
-    pacstrap /mnt base base-devel linux-zen linux-firmware xfsprogs amd-ucode networkmanager zsh git-lfs curl wget man-db mlocate reflector nano-syntax-highlighting
+    pacstrap /mnt base base-devel linux-zen linux-firmware btrfs-progs amd-ucode networkmanager zsh git-lfs curl wget man-db mlocate reflector nano-syntax-highlighting
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 2
 
