@@ -91,14 +91,13 @@ install() {
     echo "%wheel ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
     echo -e "${YELLOW}Set password for your new user${NORMAL}\n"
     passwd ${USERNAME}
-    echo "export EDITOR='nvim'" > /home/${USERNAME}/.zshrc
+    echo "export EDITOR='nano'" > /home/${USERNAME}/.zshrc
     echo "autoload -Uz compinit promptinit" >> /home/${USERNAME}/.zshrc
     echo "compinit" >> /home/${USERNAME}/.zshrc
     echo "promptinit" >> /home/${USERNAME}/.zshrc
     echo "prompt suse" >> /home/${USERNAME}/.zshrc
     echo "alias ll='ls -lah'" >> /home/${USERNAME}/.zshrc
     echo "alias cls='clear'" >> /home/${USERNAME}/.zshrc
-    echo "alias vim='nvim'" >> /home/${USERNAME}/.zshrc
     chown ${USERNAME}:users /home/${USERNAME}/.zshrc
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 1
@@ -124,7 +123,7 @@ install() {
     echo "title Arch Linux" > /boot/loader/entries/arch.conf
     echo "linux /vmlinuz-linux-zen" >> /boot/loader/entries/arch.conf
     echo "initrd /initramfs-linux-zen.img" >> /boot/loader/entries/arch.conf
-    echo "options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p3)=cryptsys rd.luks.options=password-echo=no root=/dev/mapper/cryptsys rw" >> /boot/loader/entries/arch.conf
+    echo "options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p3)=cryptsys rd.luks.options=password-echo=no root=/dev/mapper/cryptsys rootflags=subvol=@ rw" >> /boot/loader/entries/arch.conf
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 1
 
