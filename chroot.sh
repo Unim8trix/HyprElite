@@ -155,9 +155,9 @@ install() {
       nordic-theme nordzy-cursors papirus-icon-theme \
       brightnessctl mc unzip polkit-gnome pamixer pavucontrol \
       bluez-utils blueman network-manager-applet modemmanager usb_modeswitch \
-      btop pacman-contrib power-profiles-daemon \
+      btop pacman-contrib power-profiles-daemon udiskie \
       noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-dejavu cantarell-fonts \
-      nwg-look sof-firmware alsa-firmware fzf jq yq \
+      nwg-look sof-firmware alsa-firmware fzf jq yq zed \
       pipewire-alsa pipewire-pulse pipewire-jack xdg-user-dirs starship fastfetch \
       grim slurp otf-font-awesome wl-clipboard xsensors swappy"
     echo -e "${GREEN}Done${NORMAL}\n"
