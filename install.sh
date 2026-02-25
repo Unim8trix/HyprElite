@@ -149,7 +149,7 @@ install() {
     sleep 0.5
 
     echo -e "${YELLOW}Copy wallpapers${NORMAL}\n"
-    cp -R /root/HyprElite/wallpapers/* /mnt/home/${USERNAME}/Bilder/Wallpapers/
+    cp -R /root/HyprElite/wallpaper/* /mnt/home/${USERNAME}/Bilder/Wallpaper/
     arch-chroot /mnt sudo chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}/Bilder
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 0.5

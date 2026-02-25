@@ -151,13 +151,13 @@ install() {
     echo -e "${YELLOW}Install Window manager and tools${NORMAL}\n"
     sleep 2
     su ${USERNAME} -c "yay --noconfirm -Sy vulkan-radeon mesa hyprland alacritty waybar firefox-developer-edition-i18n-de \
-      swww wofi dunst xdg-desktop-portal-hyprland hyprlock plymouth-theme-arch-charge \
-      tumbler nordic-theme nordzy-cursors papirus-icon-theme papirus-folders-nordic \
-      brightnessctl mc thunar polkit-gnome pamixer pavucontrol \
-      bluez-utils blueman network-manager-applet gvfs modemmanager usb_modeswitch \
-      thunar-archive-plugin file-roller btop pacman-contrib power-profiles-daemon \
+      hyprpaper wofi dunst xdg-desktop-portal-hyprland hyprlock plymouth-theme-arch-charge \
+      nordic-theme nordzy-cursors papirus-icon-theme \
+      brightnessctl mc unzip polkit-gnome pamixer pavucontrol \
+      bluez-utils blueman network-manager-applet modemmanager usb_modeswitch \
+      btop pacman-contrib power-profiles-daemon \
       noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-dejavu cantarell-fonts \
-      nwg-look xfce4-settings sof-firmware alsa-firmware fzf jq yq \
+      nwg-look sof-firmware alsa-firmware fzf jq yq \
       pipewire-alsa pipewire-pulse pipewire-jack xdg-user-dirs starship fastfetch \
       grim slurp otf-font-awesome wl-clipboard xsensors swappy"
     echo -e "${GREEN}Done${NORMAL}\n"
@@ -190,7 +190,7 @@ install() {
     sleep 1
 
     echo -e "${YELLOW}Create user directories${NORMAL}\n"
-    su ${USERNAME} -c "mkdir -p /home/${USERNAME}/{.cache/nano/backups,.local/share/fonts,Bilder/Wallpapers,Bilder/Screenshots}"
+    su ${USERNAME} -c "mkdir -p /home/${USERNAME}/{.cache/nano/backups,.local/share/fonts,Bilder/Wallpaper,Bilder/Screenshots}"
     echo -e "${GREEN}Done${NORMAL}\n"
     sleep 1
 }

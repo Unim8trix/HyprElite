@@ -55,24 +55,21 @@ A big THANKs to [SOL](https://github.com/SolDoesTech/HyprV2) for getting me into
 | :--------------------------------------| :---------------------------------------------------------------------------------------------|
 | **mesa, vulkan-radeon**                | OpenGL and Vulkan drivers for amd gpu |
 | **hyprland**                           | The compositor |
-| **alacritty**                            | My default terminal |
+| **alacritty**                          | My default terminal |
 | **waybar**                             | Top bar |
 | **firefox-developer-edition-i18n-de**  | My default browser |
+| **zed**                                | My default editor |
 | **nano**                               | Terminal editor |
-| **swww**                               | Wallpaper backend |
+| **hyprpaper**                          | Wallpaper backend |
 | **wofi**                               | Application launcher menu |
 | **dunst**                              | Graphical notification daemon |
 | **xdg-desktop-portal-hyprland**        | Backend for hyprland |
-| **thunar**                             | Graphical file manager |
-| **thunar-archive-plugin, file-roller** | Thunar archive plugin and tool |
-| **tumbler**                            | Thumbnail creation in thunar |
 | **mc**                                 | Midnight Commander, Norton Commander clone for console |
 | **polkit-gnome**                       | GUI for superuser access |
 | **pamixer, pavucontrol**               | Audio tool and settings |
 | **brightnessctl**                      | control monitor and keyboard brightness level |
 | **bluez-utils, blueman**               | Bluetooth drivers, utils and GUI app |
 | **network-manager-applet**             | NetworkManager and applet |
-| **gvfs**                               | Automount USB drives,etc |
 | **btop**                               | Terminal resource monitor |
 | **zfz, jq, yq**                        | some usefull cmdline utils |
 | **grim, slurp, swappy**                | Screenshots tools |
@@ -81,7 +78,7 @@ A big THANKs to [SOL](https://github.com/SolDoesTech/HyprV2) for getting me into
 | **noto-fonts-emoji**                   | Default emoji fonts |
 | **ttf-dejavu, cantarell-fonts**        | Used by some apps |
 | **ttf-font-awesome**                   | Icons needed for dunst |
-| **nwg-look, xfce4-settings**           | GTK theme settings |
+| **nwg-look**                           | GTK theme settings |
 | **pipewire**                           | Audioserver |
 | **sof-firmware, alsa-firmware**        | Soundcard firmware |
 | **xdg-user-dirs**                      | Manager user directories |
@@ -89,7 +86,6 @@ A big THANKs to [SOL](https://github.com/SolDoesTech/HyprV2) for getting me into
 | **fastfetch**                          | CLI based system information |
 | **papirus-icon-theme**                 | Icon theme |
 | **nordic-theme, nordzy-cursors**       | Nord based color theme |
-| **papirus-folders-nordic**             | Nord based color theme |
 
 
 ## ⌨️ Keybinds
